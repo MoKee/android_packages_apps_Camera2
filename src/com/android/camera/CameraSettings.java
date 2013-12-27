@@ -368,15 +368,18 @@ public class CameraSettings {
                     pictureFormat, getSupportedPictureFormatLists());
         }
 
-        if (contrast != null && !CameraUtil.isSupported(mParameters, "contrast") && !CameraUtil.isSupported(mParameters, "contrast-max")) {
+        if (contrast != null && !CameraUtil.isSupported(mParameters, "contrast") &&
+            !CameraUtil.isSupported(mParameters, "contrast-max")) {
             removePreference(group, contrast.getKey());
         }
 
-        if (sharpness != null && !CameraUtil.isSupported(mParameters, "sharpness") && !CameraUtil.isSupported(mParameters, "sharpness-max")) {
+        if (sharpness != null && !CameraUtil.isSupported(mParameters, "sharpness") &&
+            !CameraUtil.isSupported(mParameters, "sharpness-max")) {
             removePreference(group, sharpness.getKey());
         }
 
-        if (saturation != null && !CameraUtil.isSupported(mParameters, "saturation") && !CameraUtil.isSupported(mParameters, "saturation-max")) {
+        if (saturation != null && !CameraUtil.isSupported(mParameters, "saturation") &&
+            !CameraUtil.isSupported(mParameters, "saturation-max")) {
             removePreference(group, saturation.getKey());
         }
     }
