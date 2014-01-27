@@ -18,6 +18,7 @@ package com.android.camera;
 
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
@@ -511,6 +512,8 @@ public class VideoUI implements PieRenderer.PieListener,
     }
 
     public void updateOnScreenIndicators(Parameters param, ComboPreferences prefs) {
+      mOnScreenIndicators.updateExposureOnScreenIndicator(param,
+              CameraSettings.readExposure(prefs));
       mOnScreenIndicators.updateFlashOnScreenIndicator(param.getFlashMode());
       boolean location = RecordLocationPreference.get(
               prefs, mActivity.getContentResolver());
@@ -725,6 +728,21 @@ public class VideoUI implements PieRenderer.PieListener,
 
     public boolean isVisible() {
         return mCameraControls.getVisibility() == View.VISIBLE;
+    }
+
+    public boolean onScaleStepResize(boolean direction)
+    {
+        if(mGestures != null){
+            return mGestures.onScaleStepResize(direction);
+        }
+        return false;
+    }
+
+    public void onScaleChangeDraw(Canvas canvas)
+    {
+        if(mGestures != null){
+            mGestures.onScaleChangeDraw(canvas);
+        }
     }
 
     @Override
