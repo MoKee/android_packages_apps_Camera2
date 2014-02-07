@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2013 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -434,6 +435,9 @@ public class VideoModule implements CameraModule,
         if (mActivity.setStoragePath(mPreferences)) {
             mActivity.updateStorageSpaceAndHint();
         }
+
+        // Power shutter
+        mActivity.initPowerShutter(mPreferences);
 
         /*
          * To reduce startup time, we start the preview in another thread.
@@ -1163,25 +1167,41 @@ public class VideoModule implements CameraModule,
 
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-                mUI.onScaleStepResize(true);
+                if (event.getRepeatCount() == 0 && !CameraActivity.mPowerShutter &&
+                        !CameraUtil.hasCameraKey()) {
+                    mUI.clickShutter();
+                } else {
+                    mUI.onScaleStepResize(true);
+                }
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                mUI.onScaleStepResize(false);
+                if (event.getRepeatCount() == 0 && !CameraActivity.mPowerShutter &&
+                        !CameraUtil.hasCameraKey()) {
+                    mUI.clickShutter();
+                } else {
+                    mUI.onScaleStepResize(false);
+                }
                 return true;
             case KeyEvent.KEYCODE_CAMERA:
                 if (event.getRepeatCount() == 0) {
                     mUI.clickShutter();
-                    return true;
                 }
-                break;
+                return true;
             case KeyEvent.KEYCODE_DPAD_CENTER:
                 if (event.getRepeatCount() == 0) {
                     mUI.clickShutter();
+                }
+                return true;
+            case KeyEvent.KEYCODE_POWER:
+                if (event.getRepeatCount() == 0 && CameraActivity.mPowerShutter &&
+                        !CameraUtil.hasCameraKey()) {
+                    mUI.clickShutter();
+                }
+                return true;
+            case KeyEvent.KEYCODE_MENU:
+                if (mMediaRecorderRecording) {
                     return true;
                 }
-                break;
-            case KeyEvent.KEYCODE_MENU:
-                if (mMediaRecorderRecording) return true;
                 break;
         }
         return false;
@@ -1191,10 +1211,22 @@ public class VideoModule implements CameraModule,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
+                if (!CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
+                    mUI.pressShutter(false);
+                }
+                return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
+                if (!CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
+                    mUI.pressShutter(false);
+                }
                 return true;
             case KeyEvent.KEYCODE_CAMERA:
                 mUI.pressShutter(false);
+                return true;
+            case KeyEvent.KEYCODE_POWER:
+                if (CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
+                    mUI.pressShutter(false);
+                }
                 return true;
         }
         return false;
@@ -2135,6 +2167,7 @@ public class VideoModule implements CameraModule,
                 setCameraParameters();
             }
             mUI.updateOnScreenIndicators(mParameters, mPreferences);
+            mActivity.initPowerShutter(mPreferences);
         }
     }
 
