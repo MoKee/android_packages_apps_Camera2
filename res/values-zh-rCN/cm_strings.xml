@@ -114,11 +114,11 @@
   <string name="pref_camera_slow_shutter_title">低速快门</string>
   <string name="pref_camera_slow_shutter_entry_off">关闭</string>
   <string name="pref_camera_slow_shutter_entry_auto">自动</string>
-  <string name="pref_camera_slow_shutter_entry_half_second">0.5 s</string>
-  <string name="pref_camera_slow_shutter_entry_1s">1 s</string>
-  <string name="pref_camera_slow_shutter_entry_2s">2 s</string>
-  <string name="pref_camera_slow_shutter_entry_4s">4 s</string>
-  <string name="pref_camera_slow_shutter_entry_8s">8 s</string>
+  <string name="pref_camera_slow_shutter_entry_half_second">0.5 秒</string>
+  <string name="pref_camera_slow_shutter_entry_1s">1 秒</string>
+  <string name="pref_camera_slow_shutter_entry_2s">2 秒</string>
+  <string name="pref_camera_slow_shutter_entry_4s">4 秒</string>
+  <string name="pref_camera_slow_shutter_entry_8s">8 秒</string>
   <string name="pref_camera_storage_title">存储器</string>
   <string name="camera_menu_enhance_label">增强</string>
   <string name="camera_menu_slow_shutter_label">低速快门</string>
