@@ -23,6 +23,7 @@
   <string name="pref_camera_picturesize_entry_11_5mp">1150 万像素</string>
   <string name="pref_camera_picturesize_entry_10_4mp">1040 万像素</string>
   <string name="pref_camera_picturesize_entry_10mp">1000 万像素</string>
+  <string name="pref_camera_picturesize_entry_9mp_wide">970 万像素 (16x9）</string>
   <string name="pref_camera_picturesize_entry_9mp">900 万像素</string>
   <string name="pref_camera_picturesize_entry_8_2mp">820 万像素</string>
   <string name="pref_camera_picturesize_entry_7_7mp">770 万像素</string>
