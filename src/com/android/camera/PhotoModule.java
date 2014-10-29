@@ -1093,6 +1093,10 @@ public class PhotoModule
 
             if (needRestartPreview) {
                 setupPreview();
+                if (CameraUtil.FOCUS_MODE_CONTINUOUS_PICTURE.equals(
+                    mFocusManager.getFocusMode())) {
+                    mCameraDevice.cancelAutoFocus();
+                }
             }else if ((mReceivedSnapNum == mBurstSnapNum)
                         && (mCameraState != LONGSHOT)) {
                 mFocusManager.restartTouchFocusTimer();
@@ -1209,6 +1213,12 @@ public class PhotoModule
                 }
                 // Animate capture with real jpeg data instead of a preview frame.
                 if (!mBurstShotInProgress && mCameraState != LONGSHOT) {
+                    Size pic_size = mParameters.getPictureSize();
+                    if ((pic_size.width <= 352) && (pic_size.height <= 288)) {
+                        mUI.setDownFactor(2); //Downsample by 2 for CIF & below
+                    } else {
+                        mUI.setDownFactor(4);
+                    }
                     mUI.animateCapture(jpegData, orientation, mMirror,
                             (mSnapshotMode == CameraInfo.CAMERA_SUPPORT_MODE_ZSL) &&
                             (mSceneMode != CameraUtil.SCENE_MODE_HDR));
@@ -1714,7 +1724,12 @@ public class PhotoModule
         if (pressed && !canTakePicture()) return;
 
         if (pressed) {
-            mFocusManager.onShutterDown();
+            String timer = mPreferences.getString(
+                CameraSettings.KEY_TIMER,
+                mActivity.getString(R.string.pref_camera_timer_default));
+            if (timer.equals("0")) {
+                mFocusManager.onShutterDown();
+            }
         } else {
             // for countdown mode, we need to postpone the shutter release
             // i.e. lock the focus during countdown.
