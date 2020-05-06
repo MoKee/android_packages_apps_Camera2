@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2018-2020 The MoKee Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="1080"
+    android:viewportHeight="1080">
+  <path
+      android:pathData="M754,431.05V671.82c0,24.71 -18.59,44.92 -41.32,44.92H367.31c-22.73,0 -41.32,-20.21 -41.32,-44.92V431.05c0,-24.7 18.59,-44.92 41.32,-44.92H712.69C735.42,386.13 754,406.35 754,431.05Z"
+      android:fillColor="#4d4d4d"/>
+  <path
+      android:pathData="M754,431.05v65.58H326V431.05c0,-24.7 18.59,-44.92 41.32,-44.92H712.69C735.42,386.13 754,406.35 754,431.05Z"
+      android:fillColor="#666"/>
+  <path
+      android:pathData="M540,536.61m-111.31,0a111.31,111.31 0,1 1,222.62 0a111.31,111.31 0,1 1,-222.62 0"
+      android:fillColor="#bdbdbd"/>
+  <path
+      android:pathData="M541.15,536.61m-71.96,0a71.96,71.96 0,1 1,143.92 0a71.96,71.96 0,1 1,-143.92 0"
+      android:fillColor="#ededed"/>
+  <path
+      android:pathData="M647,401.61H541.35a7.87,7.87 0,0 1,-1.35 -0.12,8.07 8.07,0 0,1 -1.36,0.12H433c-4.1,0 -5.52,-3.37 -3.15,-7.46l31.58,-54.71c2.38,-4.1 7.67,-7.46 11.77,-7.46H606.78c4.1,0 9.39,3.36 11.77,7.46l31.58,54.71C652.5,398.24 651.08,401.61 647,401.61Z"
+      android:fillColor="#666"/>
+  <path
+      android:pathData="M700.82,438.95m-11.75,0a11.75,11.75 0,1 1,23.5 0a11.75,11.75 0,1 1,-23.5 0"
+      android:fillColor="#ededed"/>
+</vector>
